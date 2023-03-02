@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding:0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Nosifer';
+}
+
+html {
+    height: 100%;
+    width: auto;
+}
+
+body {
+    background-image: url(assets/Spooky.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    margin: 0 auto;
+    min-height: 100vh; 
+}
+
+header {
+    margin: 0;
+    padding: 0;
+
+}
+
+.wrapper {
+   width: 100vw;
+   height: 100vh;
+   min-height: 500px;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: nowrap;
+   justify-content: space-evenly;
+   align-items: center;
+}
+
+h1 {
+    position: fixed;
+    width: 100%;
+    font-weight: normal;
+    text-align: center;
+}
+
+.left-column,
+.center-column,
+.right-column{
+    padding: 0;
+    margin: 5px 0;
+ }
+
+.left-column:nth-child(1) {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center; 
+    color: #737371; 
+    font-size: 2em;
+    opacity: 0.8;
+    margin: 0;
+    padding: 0;
+}
+
+.center-column:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.secondary-title:nth-child(1) {
+    font-size: 30px;
+    text-align: center;
+    flex: auto;
+    margin: 20px;
+}
+
+.game-board:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+}
+.game-square { 
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.box {
+    display: flex;
+    background-color: #737371; 
+    width: 10vw;
+    height: 10vw;
+    opacity: 0.8;
+    border: 3px solid rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: space-around;
+    font-size: 5vw;
+}
+
+.right-column:nth-child(3){
+    color: #737371; 
+    opacity: 0.8;
+    display: flex;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 2em;
+    margin: 0;
+    padding: 0;
+}
