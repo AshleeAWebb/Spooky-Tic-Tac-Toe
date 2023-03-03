@@ -107,6 +107,7 @@ h1 {
     align-items: center;
     justify-content: space-around;
     font-size: 5vw;
+    cursor: pointer;
 }
 
 .right-column:nth-child(3){
