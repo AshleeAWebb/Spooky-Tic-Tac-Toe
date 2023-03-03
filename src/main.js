@@ -1,37 +1,72 @@
-var player1 = new Player(1, "🎃");
-var player2 = new Player(2, "👻");
-var currentPlayer = player1; 
+var player1 = new Player(1, "👻");
+var player2 = new Player(2, "🎃");
+var currentPlayer = player1;
 
-var box1 = document.querySelector('#one');
-var box2 = document.querySelector('#two');
-var box3 = document.querySelector('#three');
-var box4 = document.querySelector('#four');
-var box5 = document.querySelector('#five');
-var box6 = document.querySelector('#six');
-var box7 = document.querySelector('#seven');
-var box8 = document.querySelector('#eight');
-var box9 = document.querySelector('#nine');
-var winnerAnnouncement = document.querySelector('.secondary-title');
-var numberOfWinsPlayer1 = document.querySelector('.player-one-win');
-var numberOfWinsPlayer2 = document.querySelector('.player-two-win');
+var game = new Game();
 
-box1.addEventListener('click', addPlayerToken);
-box2.addEventListener('click', addPlayerToken);
-box3.addEventListener('click', addPlayerToken);
-box4.addEventListener('click', addPlayerToken);
-box5.addEventListener('click', addPlayerToken);
-box6.addEventListener('click', addPlayerToken);
-box7.addEventListener('click', addPlayerToken);
-box8.addEventListener('click', addPlayerToken);
-box9.addEventListener('click', addPlayerToken);
+var box0 = document.querySelector("#zero");
+var box1 = document.querySelector("#one");
+var box2 = document.querySelector("#two");
+var box3 = document.querySelector("#three");
+var box4 = document.querySelector("#four");
+var box5 = document.querySelector("#five");
+var box6 = document.querySelector("#six");
+var box7 = document.querySelector("#seven");
+var box8 = document.querySelector("#eight");
+var winnerAnnouncement = document.querySelector(".secondary-title");
+var numberOfWinsPlayer1 = document.querySelector(".player-one-win");
+var numberOfWinsPlayer2 = document.querySelector(".player-two-win");
 
-function addPlayerToken() {
-    if (!this.textContent) { 
-      this.textContent = currentPlayer.token; 
-      switchPlayer(); 
-      updateWinner();
-  }
+box0.addEventListener("click", function () {
+    addPlayerToken(0, game);
+});
+box1.addEventListener("click", function () {
+    addPlayerToken(1, game);
+});
+box2.addEventListener("click", function () {
+    addPlayerToken(2, game);
+});
+box3.addEventListener("click", function () {
+    addPlayerToken(3, game);
+});
+box4.addEventListener("click", function () {
+    addPlayerToken(4, game);
+});
+box5.addEventListener("click", function () {
+    addPlayerToken(5, game);
+});
+box6.addEventListener("click", function () {
+    addPlayerToken(6, game);
+});
+box7.addEventListener("click", function () {
+    addPlayerToken(7, game);
+});
+box8.addEventListener("click", function () {
+    addPlayerToken(8, game);
+});
+
+
+function updateBoard() {
+  box0.innerText = game.gameBoard[0];
+  box1.innerText = game.gameBoard[1];
+  box2.innerText = game.gameBoard[2];
+  box3.innerText = game.gameBoard[3];
+  box4.innerText = game.gameBoard[4];
+  box5.innerText = game.gameBoard[5];
+  box6.innerText = game.gameBoard[6];
+  box7.innerText = game.gameBoard[7];
+  box8.innerText = game.gameBoard[8];
 }
+
+function addPlayerToken(index, game) {
+    if (!game.gameBoard[index]) { 
+      game.playGame(index);
+      updateBoard(index);
+      switchPlayer(); 
+      updateWinner(game);
+    }
+}
+
 
 function switchPlayer() {
   if (currentPlayer === player1) {
@@ -43,17 +78,26 @@ function switchPlayer() {
   }
 }
 
-function updateWinner() {
+function updateWinner(game) {
+    var winningPlayer = currentPlayer === player1 ? player2 : player1;
+    
     if (game.winConditions()) {
-        if (currentPlayer === player1) {
-            player1.winCounter();
-            numberOfWinsPlayer1.innerHTML = `Wins: ${player1.wins}`;
-            winnerAnnouncement.innerText = `${player1.token} is the winner!`
-        } else {
-            player2.winCounter();
-            numberOfWinsPlayer2.innerHTML = `Wins: ${player2.wins}`;
-            winnerAnnouncement.innerText = `${player2.token} is the winner!`
-        }
-        game.clearBoard(); 
+      winningPlayer.winCounter();
+      
+      if (winningPlayer === player1) {
+        numberOfWinsPlayer1.innerHTML = `${player1.wins}`;
+        winnerAnnouncement.innerText = `${player1.token} is the winner!`
+        console.log("Player 1 wins!");
+      } else {
+        numberOfWinsPlayer2.innerHTML = `${player2.wins}`;
+        winnerAnnouncement.innerText = `${player2.token} is the winner!`
+        console.log("Player 2 wins!");
+      }
+      
+      game.clearBoard(); 
+    } else if (!game.gameBoard.includes(null)) {
+      winnerAnnouncement.innerText = `It's a draw!`;
+      console.log("It's a draw!");
+      game.clearBoard(); 
     }
-}
+  }

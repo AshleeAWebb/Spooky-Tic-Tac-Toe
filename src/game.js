@@ -1,44 +1,38 @@
-class Game{
-    constructor(){
-        this.gameBoard = new Array(9).fill(null);
-        this.currentPlayer = "🎃";
-        this.winner = false;
-    }
-
-    playGame(index) {
-        if (!this.winConditions() && this.gameBoard[index] === null) {
-            this.gameBoard[index] = this.currentPlayer;
-            this.currentPlayer = this.currentPlayer === "🎃" ? "👻" : "🎃"
-            updateWinner();
-        }
-    }
-
-    winConditions() {
-        var winLineUp =[[1, 5, 9], 
-        [2, 5, 8], 
-        [3, 6, 9],
+class Game {
+    constructor() {
+      this.gameBoard = [null, null, null, null, null, null, null, null, null];
+      this.winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
         [1, 4, 7],
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-        [7, 5, 3]
-        ];
-        for (var i =0; i < winLineUp.length; i++) {
-        var [a, b, c ] = winLineUp[i];
-        if (this.gameBoard[a] && this.gameBoard[a]===this.gameBoard[b] && this.gameBoard[a] === this.gameBoard[c]) {
-            return true;
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+      ];
+    }
+  
+    playGame(index) {
+      this.gameBoard[index] = currentPlayer.token;
+    }
+  
+    winConditions() {
+      for (let i = 0; i < this.winningConditions.length; i++) {
+        var [a, b, c] = this.winningConditions[i];
+        if (
+          this.gameBoard[a] &&
+          this.gameBoard[a] === this.gameBoard[b] &&
+          this.gameBoard[b] === this.gameBoard[c]
+        ) {
+          return true;
         }
+      }
+      return false;
     }
-     if(!this.board.includes(null)) {
-        return true;
-     }
-     return false;
-     }   
-
+  
     clearBoard() {
-        this.gameBoard = new Array(9).fill(null);
-        this.currentPlayer = "🎃"
-        this.winner =false;
-
+      this.gameBoard = [null, null, null, null, null, null, null, null, null];
+      updateBoard();
     }
-}var game = new Game();
+  }
