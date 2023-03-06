@@ -1,9 +1,12 @@
+// Global Variables
 var player1 = new Player(1, "👻");
 var player2 = new Player(2, "🎃");
 var currentPlayer = player1;
+var startingPlayer = player1;
 
-var game = new Game();
+var currentGame = new Game();
 
+// Query Selectors
 var box0 = document.querySelector("#zero");
 var box1 = document.querySelector("#one");
 var box2 = document.querySelector("#two");
@@ -17,87 +20,87 @@ var winnerAnnouncement = document.querySelector(".secondary-title");
 var numberOfWinsPlayer1 = document.querySelector(".player-one-win");
 var numberOfWinsPlayer2 = document.querySelector(".player-two-win");
 
+// Event Listeners
 box0.addEventListener("click", function () {
-    addPlayerToken(0, game);
+    addPlayerToken(0, currentGame);
 });
 box1.addEventListener("click", function () {
-    addPlayerToken(1, game);
+    addPlayerToken(1, currentGame);
 });
 box2.addEventListener("click", function () {
-    addPlayerToken(2, game);
+    addPlayerToken(2, currentGame);
 });
 box3.addEventListener("click", function () {
-    addPlayerToken(3, game);
+    addPlayerToken(3, currentGame);
 });
 box4.addEventListener("click", function () {
-    addPlayerToken(4, game);
+    addPlayerToken(4, currentGame);
 });
 box5.addEventListener("click", function () {
-    addPlayerToken(5, game);
+    addPlayerToken(5, currentGame);
 });
 box6.addEventListener("click", function () {
-    addPlayerToken(6, game);
+    addPlayerToken(6, currentGame);
 });
 box7.addEventListener("click", function () {
-    addPlayerToken(7, game);
+    addPlayerToken(7, currentGame);
 });
 box8.addEventListener("click", function () {
-    addPlayerToken(8, game);
+    addPlayerToken(8, currentGame);
 });
 
-
+// Functions
 function updateBoard() {
-  box0.innerText = game.gameBoard[0];
-  box1.innerText = game.gameBoard[1];
-  box2.innerText = game.gameBoard[2];
-  box3.innerText = game.gameBoard[3];
-  box4.innerText = game.gameBoard[4];
-  box5.innerText = game.gameBoard[5];
-  box6.innerText = game.gameBoard[6];
-  box7.innerText = game.gameBoard[7];
-  box8.innerText = game.gameBoard[8];
-}
+    var boxes = document.querySelectorAll('.box');
+    for (var i = 0; i < boxes.length; i++) {
+      boxes[i].innerText = currentGame.gameBoard[i];
+    }
+  }
 
-function addPlayerToken(index, game) {
-    if (!game.gameBoard[index]) { 
-      game.playGame(index);
-      updateBoard(index);
-      switchPlayer(); 
-      updateWinner(game);
+function addPlayerToken(position, currentGame) {
+    if (!currentGame.gameBoard[position]) {
+        currentGame.playGame(position);
+        updateBoard(position);
+        switchPlayer();
+        updateWinner(currentGame);
     }
 }
 
 
+  
 function switchPlayer() {
-  if (currentPlayer === player1) {
-    currentPlayer = player2;
-    winnerAnnouncement.innerText = `it's ${player2.token}'s turn!`
-  } else {
-    currentPlayer = player1;
-    winnerAnnouncement.innerText = `it's ${player1.token}'s turn!`
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
+    winnerAnnouncement.innerText = `it's ${currentPlayer.token}'s turn!`;
   }
+
+  function resetPlayer() {
+    currentPlayer = startingPlayer === player1 ? player2 : player1;
+    winnerAnnouncement.innerText = `it's ${currentPlayer.token}'s turn!`;
 }
 
-function updateWinner(game) {
+function updateWinner(currentGame) {
     var winningPlayer = currentPlayer === player1 ? player2 : player1;
-    
-    if (game.winConditions()) {
-      winningPlayer.winCounter();
-      
-      if (winningPlayer === player1) {
-        numberOfWinsPlayer1.innerHTML = `${player1.wins}`;
-        winnerAnnouncement.innerText = `${player1.token} is the winner!`
-        console.log("Player 1 wins!");
-      } else {
-        numberOfWinsPlayer2.innerHTML = `${player2.wins}`;
-        winnerAnnouncement.innerText = `${player2.token} is the winner!`
-        console.log("Player 2 wins!");
-      }
-      
-      game.clearBoard(); 
-    } else if (!game.gameBoard.includes(null)) {
-      winnerAnnouncement.innerText = `It's a draw!`;
-      console.log("It's a draw!");
-      game.clearBoard(); 
+    if (currentGame.winConditions()) {
+        winningPlayer.winCounter();
+        if (winningPlayer === player1) {
+            numberOfWinsPlayer1.innerHTML = `${player1.wins}`;
+            winnerAnnouncement.innerText = `${player1.token} is the winner!`;
+            startingPlayer = player2; 
+        } else {
+            numberOfWinsPlayer2.innerHTML = `${player2.wins}`;
+            winnerAnnouncement.innerText = `${player2.token} is the winner!`;
+            startingPlayer = player1; 
+        }
+        setTimeout(() => {
+        currentGame.clearBoard();
+        resetPlayer();
+        }, 2000);
+    } else if (!currentGame.gameBoard.includes(null)) {
+        winnerAnnouncement.innerText = `It's a draw!`;
+        setTimeout(()=> {
+        currentGame.clearBoard();
+        resetPlayer();
+        }, 2000);
     }
-  }
+}
+

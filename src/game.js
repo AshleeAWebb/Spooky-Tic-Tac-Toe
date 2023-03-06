@@ -1,6 +1,6 @@
 class Game {
     constructor() {
-      this.gameBoard = [null, null, null, null, null, null, null, null, null];
+      this.gameBoard = new Array(9).fill(null);
       this.winningConditions = [
         [0, 1, 2],
         [3, 4, 5],
@@ -13,8 +13,8 @@ class Game {
       ];
     }
   
-    playGame(index) {
-      this.gameBoard[index] = currentPlayer.token;
+    playGame(position) {
+      this.gameBoard[position] = currentPlayer.token;
     }
   
     winConditions() {
@@ -32,7 +32,7 @@ class Game {
     }
   
     clearBoard() {
-      this.gameBoard = [null, null, null, null, null, null, null, null, null];
+      this.gameBoard = new Array(9).fill(null);
       updateBoard();
     }
   }
