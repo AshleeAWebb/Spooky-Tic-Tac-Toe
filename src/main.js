@@ -3,7 +3,6 @@ var player1 = new Player(1, "👻");
 var player2 = new Player(2, "🎃");
 var currentPlayer = player1;
 var startingPlayer = player1;
-
 var currentGame = new Game();
 
 // Query Selectors
@@ -65,9 +64,7 @@ function addPlayerToken(position, currentGame) {
         updateWinner(currentGame);
     }
 }
-
-
-  
+ 
 function switchPlayer() {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
     winnerAnnouncement.innerText = `it's ${currentPlayer.token}'s turn!`;
@@ -85,21 +82,20 @@ function updateWinner(currentGame) {
         if (winningPlayer === player1) {
             numberOfWinsPlayer1.innerHTML = `${player1.wins}`;
             winnerAnnouncement.innerText = `${player1.token} is the winner!`;
-            startingPlayer = player2; 
         } else {
             numberOfWinsPlayer2.innerHTML = `${player2.wins}`;
             winnerAnnouncement.innerText = `${player2.token} is the winner!`;
-            startingPlayer = player1; 
         }
+        startingPlayer = startingPlayer === player1 ? player2 : player1; 
         setTimeout(() => {
-        currentGame.clearBoard();
-        resetPlayer();
+            currentGame.clearBoard();
+            resetPlayer();
         }, 2000);
     } else if (!currentGame.gameBoard.includes(null)) {
         winnerAnnouncement.innerText = `It's a draw!`;
         setTimeout(()=> {
-        currentGame.clearBoard();
-        resetPlayer();
+            currentGame.clearBoard();
+            resetPlayer();
         }, 2000);
     }
 }
