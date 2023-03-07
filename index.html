@@ -8,12 +8,14 @@
     <title>Spooky Tic Tac Toe</title>
 </head>
 <body>
-   <header><h1 class="main-title">Spooky Tic Tac Toe</h1></header>
+    <header>
+        <h1 class="main-title">Spooky Tic Tac Toe</h1>
+    </header>
     <main class="wrapper">
         <aside class="left-column">
-                <h2 class="ghost-player">👻</h2>
-                <h3 class="player-one-win">0</h3>
-                <h3>wins</h3>
+            <h2 class="ghost-player">👻</h2>
+            <h3 class="player-one-win">0</h3>
+            <h3>wins</h3>
         </aside>
         <article class="center-column">
             <h3 class="secondary-title">Play At Your Own Risk</h3>
@@ -35,12 +37,15 @@
                         <div class="box bottom" id="eight"></div>
                     </div>
                 </section>
-            </section>    
+                <audio controls class="spooky-music" id="spookyMusic" autoplay loop>
+                    <source src="assets/Sinister - Anno Domini Beats.mp3" type="audio/mpeg">
+                </audio>
+            </section>
         </article>
         <aside class="right-column">
-                <h2 class="pumpkin-player">🎃</h2>
-                <h3 class="player-two-win">0</h3>
-                <h3>wins</h3>
+            <h2 class="pumpkin-player">🎃</h2>
+            <h3 class="player-two-win">0</h3>
+            <h3>wins</h3>
         </aside>
     </main>
     <script src="./src/game.js"></script>
