@@ -13,7 +13,7 @@ This application begins with two players, and each is assigned an emoji. The goa
 ![Giphy of Tic Tac Toe](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTQwMWRkMGYxOGY3OWVhZjU2NzExYzdiODA3ODk0Mjk2MzZkNmFkOSZjdD1n/gfKZQHYcDGBQ8j7HRD/giphy.gif)
 
 ### Context:
-I worked around 40 hours on this project. I broke it down into four iterations to allow myself time to focus on all the different elements and learn how they interact. 
+I dedicated approximately 40-50 hours of work to this project, breaking it down into four iterations to ensure I could focus on each element and learn how they interact.
 
 ### Contributors:
 [Ashlee Webb's GitHub](https://github.com/AshleeAWebb)
