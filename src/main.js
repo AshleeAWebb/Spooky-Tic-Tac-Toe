@@ -18,6 +18,8 @@ var box8 = document.querySelector("#eight");
 var winnerAnnouncement = document.querySelector(".secondary-title");
 var numberOfWinsPlayer1 = document.querySelector(".player-one-win");
 var numberOfWinsPlayer2 = document.querySelector(".player-two-win");
+var audio = document.getElementById("spookyMusic");
+
 
 // Event Listeners
 box0.addEventListener("click", function () {
@@ -52,9 +54,9 @@ box8.addEventListener("click", function () {
 function updateBoard() {
     var boxes = document.querySelectorAll('.box');
     for (var i = 0; i < boxes.length; i++) {
-      boxes[i].innerText = currentGame.gameBoard[i];
+        boxes[i].innerText = currentGame.gameBoard[i];
     }
-  }
+}
 
 function addPlayerToken(position, currentGame) {
     if (!currentGame.gameBoard[position]) {
@@ -64,13 +66,13 @@ function addPlayerToken(position, currentGame) {
         updateWinner(currentGame);
     }
 }
- 
+
 function switchPlayer() {
     currentPlayer = currentPlayer === player1 ? player2 : player1;
     winnerAnnouncement.innerText = `it's ${currentPlayer.token}'s turn!`;
-  }
+}
 
-  function resetPlayer() {
+function resetPlayer() {
     currentPlayer = startingPlayer === player1 ? player2 : player1;
     winnerAnnouncement.innerText = `it's ${currentPlayer.token}'s turn!`;
 }
@@ -86,14 +88,14 @@ function updateWinner(currentGame) {
             numberOfWinsPlayer2.innerHTML = `${player2.wins}`;
             winnerAnnouncement.innerText = `${player2.token} is the winner!`;
         }
-        startingPlayer = startingPlayer === player1 ? player2 : player1; 
+        startingPlayer = currentPlayer === player1 ? player2 : player1;
         setTimeout(() => {
             currentGame.clearBoard();
             resetPlayer();
         }, 2000);
     } else if (!currentGame.gameBoard.includes(null)) {
         winnerAnnouncement.innerText = `It's a draw!`;
-        setTimeout(()=> {
+        setTimeout(() => {
             currentGame.clearBoard();
             resetPlayer();
         }, 2000);
