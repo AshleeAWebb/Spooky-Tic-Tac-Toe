@@ -18,6 +18,9 @@ I dedicated approximately 40-50 hours of work to this project, breaking it down 
 ### Contributors:
 [Ashlee Webb's GitHub](https://github.com/AshleeAWebb)
 
+### Link:
+[Spooky Tic Tac Toe](https://ashleeawebb.github.io/Spooky-Tic-Tac-Toe/)
+
 ### Learning Goals:
 The learning goals were to demonstrate understanding of DRY JavaScript, event delegation,
 data model vs. DOM, and for loops. Use problem solving to break down large problems and trust myself to find logical solutions.
